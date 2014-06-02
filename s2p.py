@@ -309,7 +309,6 @@ class s2p():
                         return self.data[:,0]*self._factor , 20.*np.log10(self.data[:,7]/np.sqrt(10.**(self.power/10.)*1e-3*self.impedance)), self.data[:,8]
             
             elif re.match('^[rR][iI]$', asked_format):
-                
                 if S == 'S11':
                     return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,2]))*self.data[:,1], np.sin(np.radians(self.data[:,2]))*self.data[:,1]
                 elif S == 'S12':
@@ -331,7 +330,7 @@ class s2p():
         elif self._format == 'DB':
             
             if asked_format.lower() == 'ma' :
-                if self.impedance == None :
+                if self.impedance is None :
                     self.get_impedance()
                 
                 if self.power == None :
@@ -346,14 +345,21 @@ class s2p():
                     elif S == 'S22':
                         return self.data[:,0]*self._factor , 10.**(self.data[:,7]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,8]
             elif re.match('^[rR][iI]$', asked_format):
-                if S == 'S11':
-                    return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,2]))*10.**(self.data[:,1]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,2], np.sin(np.radians(self.data[:,2]))*10.**(self.data[:,1]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,2]
-                elif S == 'S12':
-                    return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,4]))*10.**(self.data[:,3]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,2], np.sin(np.radians(self.data[:,4]))*10.**(self.data[:,3]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,2]
-                elif S == 'S21':
-                    return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,6]))*10.**(self.data[:,5]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,2], np.sin(np.radians(self.data[:,6]))*10.**(self.data[:,5]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,2]
-                elif S == 'S22':
-                    return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,8]))*10.**(self.data[:,7]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,2], np.sin(np.radians(self.data[:,8]))*10.**(self.data[:,7]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), self.data[:,2]
+                
+                if self.impedance is None :
+                    self.get_impedance()
+                
+                if self.power == None :
+                    raise ValueError('Error : You have to precise the attribut "power" in dBm')
+                else:
+                    if S == 'S11':
+                        return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,2]))*10.**(self.data[:,1]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), np.sin(np.radians(self.data[:,2]))*10.**(self.data[:,1]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance)
+                    elif S == 'S12':
+                        return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,4]))*10.**(self.data[:,3]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), np.sin(np.radians(self.data[:,4]))*10.**(self.data[:,3]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance)
+                    elif S == 'S21':
+                        return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,6]))*10.**(self.data[:,5]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), np.sin(np.radians(self.data[:,6]))*10.**(self.data[:,5]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance)
+                    elif S == 'S22':
+                        return self.data[:,0]*self._factor , np.cos(np.radians(self.data[:,8]))*10.**(self.data[:,7]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance), np.sin(np.radians(self.data[:,8]))*10.**(self.data[:,7]/20.)*np.sqrt(10.**(self.power/10.)*1e-3*self.impedance)
             else:
                 if S == 'S11':
                     return self.data[:,0]*self._factor , self.data[:,1], self.data[:,2]

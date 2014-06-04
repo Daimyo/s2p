@@ -384,14 +384,16 @@ class s2p():
             
             elif re.match('^[dD][bB]$', asked_format):
                 if S == 'S11':
-                    return self.data[:,0]*self._factor , np.sqrt(self.data[:,1]**2 + self.data[:,2]**2), np.degrees(np.arctan(self.data[:,2]/self.data[:,1]))
+                    return self.data[:,0]*self._factor , 20.*np.log10(np.sqrt(self.data[:,1]**2 + self.data[:,2]**2)), np.degrees(np.arctan(self.data[:,2]/self.data[:,1]))
                 elif S == 'S12':
-                    return self.data[:,0]*self._factor , np.sqrt(self.data[:,3]**2 + self.data[:,4]**2), np.degrees(np.arctan(self.data[:,4]/self.data[:,3]))
+                    return self.data[:,0]*self._factor , 20.*np.log10(np.sqrt(self.data[:,3]**2 + self.data[:,4]**2)), np.degrees(np.arctan(self.data[:,4]/self.data[:,3]))
                 elif S == 'S21':
-                    return self.data[:,0]*self._factor , np.sqrt(self.data[:,5]**2 + self.data[:,6]**2), np.degrees(np.arctan(self.data[:,6]/self.data[:,5]))
+                    return self.data[:,0]*self._factor , 20.*np.log10(np.sqrt(self.data[:,5]**2 + self.data[:,6]**2)), np.degrees(np.arctan(self.data[:,6]/self.data[:,5]))
                 elif S == 'S22':
-                    return self.data[:,0]*self._factor , np.sqrt(self.data[:,7]**2 + self.data[:,8]**2), np.degrees(np.arctan(self.data[:,8]/self.data[:,7]))
-            else:
+                    return self.data[:,0]*self._factor , 20.*np.log10(np.sqrt(self.data[:,7]**2 + self.data[:,8]**2)), np.degrees(np.arctan(self.data[:,8]/self.data[:,7]))
+                
+                
+                else:
                 if S == 'S11':
                     return self.data[:,0]*self._factor , self.data[:,1], self.data[:,2]
                 elif S == 'S12':

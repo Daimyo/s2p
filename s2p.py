@@ -335,6 +335,7 @@ class s2p():
                     return d[:,0]*f , np.sqrt(d[:,3]**2 + d[:,4]**2), np.degrees(np.arctan(d[:,4]/d[:,3]))
                 elif S.lower() == 's21':
                     return d[:,0]*f , np.sqrt(d[:,5]**2 + d[:,6]**2), np.degrees(np.arctan(d[:,6]/d[:,5]))
+
                 elif S.lower() == 's22':
                     return d[:,0]*f , np.sqrt(d[:,7]**2 + d[:,8]**2), np.degrees(np.arctan(d[:,8]/d[:,7]))
             else:

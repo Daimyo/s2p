@@ -96,26 +96,25 @@ class s2p():
                 - None
             
             Output:
-                - parameters (Array): 
-                    - 1 : The frequency format ("HZ", "KHZ", "MHZ", "GHZ")
-                    - 2 : The parameter measured ("S")
-                    - 3 : The kind of measurement ("MA", "DB", "RI")
-                    - 4 : R
+                - parameters (dictionary): 
+                    - 1 : The frequency format ("hz", "khz", "mhz", "ghz")
+                    - 2 : The parameter measured ("s", "y", "z", "h", "g")
+                    - 3 : The kind of measurement ("ma", "rb", "ri")
                     - 5 : Impedance matching
         '''
         
         f = open(self.full_name, 'r')
         temp = ''
         for i in f.readlines() :
-            
             if i[0] == '#' :
-                temp = i
+                temp = i[1:]
                 break
         
-        parameters = re.split('\s', temp)
-        
-        while parameters.count('') > 0:
-            parameters.remove('')
+        temp = temp.split()
+        parameters = {'frequency': temp[0].lower(),
+                      'parameter': temp[1].lower(),
+                      'format': temp[2].lower(),
+                      'R': float(temp[-1])}
         
         return parameters
 

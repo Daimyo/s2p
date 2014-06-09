@@ -8,7 +8,17 @@ class s2p():
 
 
 
-    def __init__(self, full_name=None):
+    def __init__(self, full_name):
+        '''
+            Initialize the class by reading all the information in the s2p file.
+            
+            Input:
+                - full_name (string): path and name of the file.
+            
+            Output:
+                - None.
+        '''
+        
         
         self.full_name = full_name
         
@@ -23,6 +33,8 @@ class s2p():
         self.power = None
         
         self.impedance = None
+        
+        
 
 
 

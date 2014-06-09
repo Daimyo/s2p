@@ -330,14 +330,13 @@ class s2p():
             
             elif re.match('^[dD][bB]$', asked_format):
                 if S.lower() == 's11':
-                    return d[:,0]*f , np.sqrt(d[:,1]**2 + d[:,2]**2), np.degrees(np.arctan(d[:,2]/d[:,1]))
+                    return d[:,0]*f , 20.*np.log10(np.sqrt(d[:,1]**2 + d[:,2]**2)), np.degrees(np.arctan(d[:,2]/d[:,1]))
                 elif S.lower() == 's12':
-                    return d[:,0]*f , np.sqrt(d[:,3]**2 + d[:,4]**2), np.degrees(np.arctan(d[:,4]/d[:,3]))
+                    return d[:,0]*f , 20.*np.log10(np.sqrt(d[:,3]**2 + d[:,4]**2)), np.degrees(np.arctan(d[:,4]/d[:,3]))
                 elif S.lower() == 's21':
-                    return d[:,0]*f , np.sqrt(d[:,5]**2 + d[:,6]**2), np.degrees(np.arctan(d[:,6]/d[:,5]))
-
+                    return d[:,0]*f , 20.*np.log10(np.sqrt(d[:,5]**2 + d[:,6]**2)), np.degrees(np.arctan(d[:,6]/d[:,5]))
                 elif S.lower() == 's22':
-                    return d[:,0]*f , np.sqrt(d[:,7]**2 + d[:,8]**2), np.degrees(np.arctan(d[:,8]/d[:,7]))
+                    return d[:,0]*f , 20.*np.log10(np.sqrt(d[:,7]**2 + d[:,8]**2)), np.degrees(np.arctan(d[:,8]/d[:,7]))
             else:
                 if S.lower() == 's11':
                     return d[:,0]*f , d[:,1], d[:,2]

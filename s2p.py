@@ -56,22 +56,6 @@ class s2p():
 
 
 
-    def _get_format(self):
-        '''Give the format of the file
-            
-            Input:
-                - None
-            
-            Output:
-                - format (String): Format of the file
-        '''
-        
-        temp = self.full_name.split('/')[-1].split('.')
-        
-        return temp[-1]
-
-
-
     def get_name(self):
         '''Give the name of the file
             
@@ -82,9 +66,7 @@ class s2p():
                 - name (String): Name of the file
         '''
         
-        temp = self.full_name.split('/')[-1]
-        
-        return temp[0:len(temp)-len(self._get_format())-1]
+        return self.full_name.split('/')[-1].split('.')[0]
 
 
 
